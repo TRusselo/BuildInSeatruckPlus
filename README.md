@@ -1,0 +1,132 @@
+# Seatruck Jukebox
+
+[![Release](https://img.shields.io/github/v/release/CHANGE_ME/SeatruckJukebox?sort=semver)](https://github.com/CHANGE_ME/SeatruckJukebox/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+A **Subnautica: Below Zero** mod that lets you bring the jukebox along for the
+ride. Build a compact **Mini Jukebox** and **Mini Speakers** inside your
+Seatruck and listen to the music tracks you've unlocked from Jukebox Disks —
+plus a hotkey to control playback from anywhere inside a Seatruck or base.
+
+It also re-enables **building inside the Seatruck** in general (a BepInEx port,
+updated for the current game, of BluesKutya's *Build In Seatruck*).
+
+---
+
+## Features
+
+- 🎵 **Mini Jukebox** — a 25%-scale buildable jukebox that fits inside the
+  Seatruck. Plays your unlocked tracks through the game's own jukebox engine,
+  with the normal in-world play / pause / next / shuffle / repeat / volume UI.
+- 🔊 **Mini Speaker** — a 50%-scale buildable speaker so the music is clear
+  inside the cramped cab.
+- 🛠️ **Build In Seatruck** — place buildables inside Seatruck segments; they
+  ride with the vehicle. Detach/reattach modules works as expected.
+- ⌨️ **Playback hotkey** — while inside a Seatruck or base:
+  - **Hold** the key (default **R**) → start / stop playback
+  - **Tap** the key → skip to the next track (with a "Now playing" toast)
+- ⚙️ **In-game options** (via Nautilus Mod Options) — rebind the hotkey, tune
+  long-press timing, cheap recipe, unlock toggle, default shuffle, notifications.
+
+> Very liberal placement collision on the mini items keeps them easy to fit in
+> the tight Seatruck interior.
+
+---
+
+## Requirements
+
+| Dependency | Notes |
+|------------|-------|
+| **Subnautica: Below Zero** | Current Steam build |
+| **BepInEx** for Below Zero | [Tobey's BepInEx Pack for Subnautica: Below Zero](https://www.nexusmods.com/subnauticabelowzero/mods/344) (BepInEx 5.4.x) |
+| **Nautilus** | 1.0.0 or newer ([SubnauticaModding/Nautilus](https://github.com/SubnauticaModding/Nautilus)) |
+
+Nautilus and BepInEx must be installed first. If you use a mod manager, adding
+this mod will pull them in automatically.
+
+---
+
+## Installation
+
+### Manual
+1. Install the BepInEx pack and Nautilus (see Requirements).
+2. Download `SeatruckJukebox-x.y.z.zip` from the
+   [Releases](https://github.com/CHANGE_ME/SeatruckJukebox/releases) page.
+3. Extract it so that the file lands at:
+   ```
+   <game folder>/BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll
+   ```
+4. Launch the game.
+
+### Mod manager (Thunderstore / r2modman)
+Install **Nautilus** and this mod; the manager handles dependencies.
+
+---
+
+## Usage
+
+1. **Unlock the buildables.** By default the Mini Jukebox & Mini Speaker unlock
+   alongside the vanilla Jukebox (find Jukebox Disks / scan Jukebox fragments).
+   Prefer them available from the start? Tick **"Unlock buildables at start"** in
+   the mod options and restart.
+2. **Build** them with the Habitat Builder inside your Seatruck (they share the
+   vanilla Jukebox's build-menu category).
+3. **Play music**:
+   - Walk up and click the jukebox's screen, **or**
+   - Use the hotkey: **hold R** to start/stop, **tap R** to skip. Only active
+     while you're inside a Seatruck or base.
+
+Songs are the ones you've unlocked from Jukebox Disks — the mod uses the game's
+own unlocked-track playlist, so nothing extra to manage.
+
+---
+
+## Configuration
+
+Open **Options → Mod Options → Seatruck Jukebox** in-game. Settings are saved to
+`BepInEx/config/com.tristyn.seatruckjukebox.json`.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| Playback hotkey | `R` | Key for play/stop (hold) and next (tap), in Seatruck/base |
+| Long-press seconds | `0.50` | How long to hold before it counts as play/stop |
+| Cheap recipe | off | Build the mini items for 1 Titanium *(restart required)* |
+| Unlock buildables at start | off | Make the mini items available immediately *(restart required)* |
+| New jukeboxes start in shuffle | on | Sets shuffle when playback starts via the hotkey |
+| Show "Now playing" notifications | on | On-screen track name when a song starts/skips |
+
+---
+
+## Building from source
+
+Requires the .NET SDK and a local install of the game + BepInEx + Nautilus
+(the `.csproj` references DLLs by absolute path — adjust the paths at the top of
+`SeatruckJukebox.csproj` to your install).
+
+```bash
+dotnet build SeatruckJukebox.csproj -c Release
+```
+
+The build publicizes `Assembly-CSharp` (via `BepInEx.AssemblyPublicizer.MSBuild`)
+and copies the output DLL into `BepInEx/plugins/SeatruckJukebox/`.
+
+To produce release zips:
+
+```bash
+./package.sh
+```
+
+---
+
+## Credits
+
+- **BluesKutya** — original [*Build In Seatruck*](https://www.nexusmods.com/subnauticabelowzero/mods/287)
+  ([source](https://github.com/BluesKutya/SubnauticaMods), MIT). This mod ports
+  and updates that build-in-Seatruck functionality and adds the jukebox features.
+- **SubnauticaModding** — [Nautilus](https://github.com/SubnauticaModding/Nautilus) modding API.
+- **Tobey** — [BepInEx Pack for Subnautica: Below Zero](https://www.nexusmods.com/subnauticabelowzero/mods/344).
+- **Unknown Worlds** — Subnautica: Below Zero.
+
+## License
+
+[MIT](LICENSE). Includes MIT-licensed portions © 2022 BluesKutya.
