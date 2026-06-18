@@ -94,6 +94,7 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
     <Reference Include="BepInEx"><HintPath>$(BepInExCore)/BepInEx.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="0Harmony"><HintPath>$(BepInExCore)/0Harmony.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="FMODUnity"><HintPath>$(GameManaged)/FMODUnity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.Addressables"><HintPath>$(GameManaged)/Unity.Addressables.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine"><HintPath>$(GameManaged)/UnityEngine.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameManaged)/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(GameManaged)/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
@@ -619,12 +620,12 @@ namespace SeatruckJukebox.Buildables
             RecipeData recipe;
             if (Plugin.Config.CheapRecipe)
             {
-                recipe = new RecipeData(new CraftData.Ingredient(TechType.Titanium, 1));
+                recipe = new RecipeData(new Ingredient(TechType.Titanium, 1));
             }
             else
             {
                 recipe = CraftDataHandler.GetRecipeData(cloneOf)
-                         ?? new RecipeData(new CraftData.Ingredient(TechType.Titanium, 1));
+                         ?? new RecipeData(new Ingredient(TechType.Titanium, 1));
             }
             prefab.SetRecipe(recipe);
 
