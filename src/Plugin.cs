@@ -24,6 +24,7 @@ namespace SeatruckJukebox
             MiniBuildables.Register();
             new Harmony(GUID).PatchAll();
             Log.LogInfo($"{NAME} {VERSION} loaded.");
+            gameObject.AddComponent<HotkeyController>();
         }
     }
 }
