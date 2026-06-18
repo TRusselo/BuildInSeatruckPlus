@@ -32,7 +32,8 @@ namespace SeatruckJukebox.Buildables
         private static TechType Make(string classId, string friendly, string description,
                                      TechType cloneOf, float scale)
         {
-            var info = PrefabInfo.WithTechType(classId, friendly, description);
+            var info = PrefabInfo.WithTechType(classId, friendly, description)
+                .WithIcon(SpriteManager.Get(cloneOf));
             var prefab = new CustomPrefab(info);
 
             var clone = new CloneTemplate(info, cloneOf);
