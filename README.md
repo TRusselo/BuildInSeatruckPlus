@@ -3,13 +3,17 @@
 [![Release](https://img.shields.io/github/v/release/TRusselo/SeatruckJukebox?sort=semver)](https://github.com/TRusselo/SeatruckJukebox/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-A **Subnautica: Below Zero** mod that lets you bring the jukebox along for the
-ride. Build a compact **Mini Jukebox** and **Mini Speakers** inside your
-Seatruck and listen to the music tracks you've unlocked from Jukebox Disks —
-plus a hotkey to control playback from anywhere inside a Seatruck or base.
+**Build inside your Seatruck — and bring the music with you.**
 
-It also re-enables **building inside the Seatruck** in general (a BepInEx port,
-updated for the current game, of BluesKutya's *Build In Seatruck*).
+A **Subnautica: Below Zero** mod with two headline features:
+
+- 🛠️ **Build In Seatruck** — use the Habitat Builder to place buildables *inside*
+  your Seatruck. Lockers, fabricators, planters, decorations — they ride with the
+  vehicle, and detaching/reattaching modules works as expected. This is a BepInEx
+  port, **updated for the current game**, of BluesKutya's *Build In Seatruck*.
+- 🎵 **Mini Jukebox & Speakers** — compact, Seatruck-sized buildables that play
+  the music tracks you've unlocked from Jukebox Disks, plus a hotkey to control
+  playback on the move.
 
 ![Build anything inside the Seatruck](assets/promo-yodawg.png)
 
@@ -28,21 +32,28 @@ updated for the current game, of BluesKutya's *Build In Seatruck*).
 
 ## Features
 
-- 🎵 **Mini Jukebox** — a 25%-scale buildable jukebox that fits inside the
-  Seatruck. Plays your unlocked tracks through the game's own jukebox engine,
-  with the normal in-world play / pause / next / shuffle / repeat / volume UI.
-- 🔊 **Mini Speaker** — a 50%-scale buildable speaker so the music is clear
-  inside the cramped cab.
-- 🛠️ **Build In Seatruck** — place buildables inside Seatruck segments; they
-  ride with the vehicle. Detach/reattach modules works as expected.
-- ⌨️ **Playback hotkey** — while inside a Seatruck or base:
-  - **Hold** the key (default **R**) → start / stop playback
-  - **Tap** the key → skip to the next track (with a "Now playing" toast)
-- ⚙️ **In-game options** (via Nautilus Mod Options) — rebind the hotkey, tune
-  long-press timing, cheap recipe, unlock toggle, default shuffle, notifications.
+### 🛠️ Build In Seatruck
+- Place buildables inside any Seatruck segment with the Habitat Builder.
+- Everything parents to the segment, so it **rides with the Seatruck** as you drive.
+- Detach and reattach modules freely — your builds stay put.
+- Normal base and world building are completely untouched (the Seatruck handling
+  is scoped to when you're actually standing in a Seatruck).
 
-> Very liberal placement collision on the mini items keeps them easy to fit in
-> the tight Seatruck interior.
+### 🎵 Mini Jukebox & Speakers
+- **Mini Jukebox** — a 25%-scale buildable jukebox that fits the Seatruck. Plays
+  your unlocked tracks through the game's own jukebox engine, with the normal
+  in-world play / pause / next / shuffle / repeat / volume screen.
+- **Mini Speaker** — a 50%-scale speaker so the music is clear inside the cramped cab.
+- Very liberal placement collision on both, so they're easy to fit.
+
+### ⌨️ Playback hotkey
+While inside a Seatruck or base:
+- **Hold** the key (default **R**) → start / stop playback.
+- **Tap** the key → skip to the next track (with a "Now playing" toast).
+
+### ⚙️ In-game options (Nautilus Mod Options)
+Rebind the hotkey, tune long-press timing, cheap recipe, unlock toggle, default
+shuffle, and notifications.
 
 ---
 
@@ -78,19 +89,25 @@ Install **Nautilus** and this mod; the manager handles dependencies.
 
 ## Usage
 
-1. **Unlock the buildables.** By default the Mini Jukebox & Mini Speaker unlock
-   alongside the vanilla Jukebox (find Jukebox Disks / scan Jukebox fragments).
-   Prefer them available from the start? Tick **"Unlock buildables at start"** in
-   the mod options and restart.
-2. **Build** them with the Habitat Builder inside your Seatruck (they share the
-   vanilla Jukebox's build-menu category).
-3. **Play music**:
+### Building in the Seatruck
+Get inside a Seatruck, equip the **Habitat Builder**, and build as you normally
+would in a base. The placement ghost turns green inside the cab and attached
+modules; whatever you place rides along when you drive.
+
+### The jukebox
+1. **Unlock the mini buildables.** By default the Mini Jukebox & Mini Speaker
+   unlock alongside the vanilla Jukebox (find Jukebox Disks / scan Jukebox
+   fragments). Prefer them from the start? Tick **"Unlock buildables at start"**
+   in the mod options and restart.
+2. **Build** a Mini Jukebox (and a Mini Speaker or two) in your Seatruck — they
+   share the vanilla Jukebox's build-menu category.
+3. **Play music:**
    - Walk up and click the jukebox's screen, **or**
    - Use the hotkey: **hold R** to start/stop, **tap R** to skip. Only active
      while you're inside a Seatruck or base.
 
 Songs are the ones you've unlocked from Jukebox Disks — the mod uses the game's
-own unlocked-track playlist, so nothing extra to manage.
+own unlocked-track playlist, so there's nothing extra to manage.
 
 ---
 
@@ -134,8 +151,9 @@ To produce release zips:
 ## Credits
 
 - **BluesKutya** — original [*Build In Seatruck*](https://www.nexusmods.com/subnauticabelowzero/mods/287)
-  ([source](https://github.com/BluesKutya/SubnauticaMods), MIT). This mod ports
-  and updates that build-in-Seatruck functionality and adds the jukebox features.
+  ([source](https://github.com/BluesKutya/SubnauticaMods), MIT). This mod continues
+  and updates that build-in-Seatruck functionality for the current game and adds
+  the mini jukebox features.
 - **SubnauticaModding** — [Nautilus](https://github.com/SubnauticaModding/Nautilus) modding API.
 - **Tobey** — [BepInEx Pack for Subnautica: Below Zero](https://www.nexusmods.com/subnauticabelowzero/mods/344).
 - **Unknown Worlds** — Subnautica: Below Zero.

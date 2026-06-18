@@ -2,7 +2,7 @@
   "name": "SeatruckJukebox",
   "version_number": "1.0.0",
   "website_url": "https://github.com/TRusselo/SeatruckJukebox",
-  "description": "Build a mini jukebox and speakers inside your Seatruck and play your unlocked music. Also re-enables building inside the Seatruck.",
+  "description": "Build inside your Seatruck (lockers, fabricators, decor) plus a mini jukebox & speakers that play your unlocked music on the move.",
   "dependencies": [
     "SubnauticaModding-Nautilus-1.0.0"
   ]

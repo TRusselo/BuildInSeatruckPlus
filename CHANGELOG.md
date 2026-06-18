@@ -8,12 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 Initial release.
 
 ### Added
+- **Build In Seatruck** — place buildables inside Seatruck segments with the
+  Habitat Builder; they ride with the vehicle and survive detach/reattach. A
+  BepInEx port of BluesKutya's mod, updated for the current game's
+  `Builder.CheckAsSubModule` behaviour, and scoped so normal/base building is
+  untouched.
 - **Mini Jukebox** buildable (25% scale) — plays unlocked jukebox tracks through
   the game's jukebox engine, with the native in-world control UI.
 - **Mini Speaker** buildable (50% scale) for clear audio inside the Seatruck.
-- **Build In Seatruck** — place buildables inside Seatruck segments; they ride
-  with the vehicle (BepInEx port of BluesKutya's mod, updated for the current
-  game's `Builder.CheckAsSubModule` behaviour).
 - **Playback hotkey** (default `R`): hold = play/stop, tap = next track, gated to
   Seatruck/base interiors, with an optional "Now playing" notification.
 - **Mod options** (Nautilus): rebindable hotkey, long-press duration, cheap
