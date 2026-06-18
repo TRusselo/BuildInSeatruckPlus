@@ -1,6 +1,6 @@
 # Seatruck Jukebox
 
-[![Release](https://img.shields.io/github/v/release/CHANGE_ME/SeatruckJukebox?sort=semver)](https://github.com/CHANGE_ME/SeatruckJukebox/releases)
+[![Release](https://img.shields.io/github/v/release/TRusselo/SeatruckJukebox?sort=semver)](https://github.com/TRusselo/SeatruckJukebox/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A **Subnautica: Below Zero** mod that lets you bring the jukebox along for the
@@ -64,7 +64,7 @@ this mod will pull them in automatically.
 ### Manual
 1. Install the BepInEx pack and Nautilus (see Requirements).
 2. Download `SeatruckJukebox-x.y.z.zip` from the
-   [Releases](https://github.com/CHANGE_ME/SeatruckJukebox/releases) page.
+   [Releases](https://github.com/TRusselo/SeatruckJukebox/releases) page.
 3. Extract it so that the file lands at:
    ```
    <game folder>/BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll

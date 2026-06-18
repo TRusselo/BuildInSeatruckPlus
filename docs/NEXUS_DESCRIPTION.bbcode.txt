@@ -33,4 +33,4 @@ The mini items unlock alongside the vanilla Jukebox (or tick "Unlock buildables 
 Based on [url=https://www.nexusmods.com/subnauticabelowzero/mods/287]Build In Seatruck[/url] by [b]BluesKutya[/b] (MIT), used with permission. Built with [url=https://github.com/SubnauticaModding/Nautilus]Nautilus[/url]. Thanks to Tobey for the BepInEx pack.
 
 [size=4][b]Source / License[/b][/size]
-Open source (MIT): https://github.com/CHANGE_ME/SeatruckJukebox
+Open source (MIT): https://github.com/TRusselo/SeatruckJukebox
