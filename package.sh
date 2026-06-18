@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# Builds SeatruckJukebox and assembles release archives into ./dist
-#   - SeatruckJukebox-<ver>.zip              (manual install: drop into BepInEx/plugins)
-#   - SeatruckJukebox-<ver>-thunderstore.zip (Thunderstore / r2modman upload)
+# Builds BuildInSeatruckPlus and assembles release archives into ./dist
+#   - BuildInSeatruckPlus-<ver>.zip              (manual install: drop into BepInEx/plugins)
+#   - BuildInSeatruckPlus-<ver>-thunderstore.zip (Thunderstore / r2modman upload)
 set -euo pipefail
 
 cd "$(dirname "$0")"
 
 VERSION="$(grep -oE '"version_number"[^"]*"[^"]*"' manifest.json | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
-NAME="SeatruckJukebox"
+NAME="BuildInSeatruckPlus"
 DLL="bin/Release/${NAME}.dll"
 
 echo ">> Building ${NAME} ${VERSION} (Release)"
@@ -21,7 +21,7 @@ fi
 rm -rf dist build-tmp
 mkdir -p dist
 
-# --- Manual-install zip:  SeatruckJukebox/SeatruckJukebox.dll ---
+# --- Manual-install zip:  BuildInSeatruckPlus/BuildInSeatruckPlus.dll ---
 mkdir -p "build-tmp/manual/${NAME}"
 cp "$DLL" "build-tmp/manual/${NAME}/"
 cp README.md LICENSE CHANGELOG.md "build-tmp/manual/${NAME}/"

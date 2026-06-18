@@ -1,4 +1,4 @@
-# Seatruck Jukebox — Design Spec
+# Build In Seatruck Plus — Design Spec
 
 **Date:** 2026-06-17
 **Game:** Subnautica: Below Zero (current Steam build)
@@ -69,7 +69,7 @@ segment, segment SubRoot) ports unchanged.
 
 ## Architecture
 
-One plugin assembly, `SeatruckJukebox.dll`, with these units:
+One plugin assembly, `BuildInSeatruckPlus.dll`, with these units:
 
 ### 1. `Plugin` (entry point)
 - `BaseUnityPlugin` with `[BepInPlugin(GUID, NAME, VERSION)]` and
@@ -158,11 +158,11 @@ One plugin assembly, `SeatruckJukebox.dll`, with these units:
 - Confirm building other items inside the Seatruck still works (full port).
 
 ## Build & deployment
-- Source project in `/home/user/SeatruckJukeboxMod/` (location irrelevant to
+- Source project in `/home/user/BuildInSeatruckPlusMod/` (location irrelevant to
   the user). Targets `net472` via `Microsoft.NETFramework.ReferenceAssemblies`.
   References: game `Assembly-CSharp.dll` + Unity modules, `Nautilus.dll`,
   BepInEx core, `0Harmony.dll`, `FMODUnity.dll`.
-- **Final artifact ships to `BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll`**
+- **Final artifact ships to `BepInEx/plugins/BuildInSeatruckPlus/BuildInSeatruckPlus.dll`**
   (same layout as the other installed mods).
 - **Housekeeping:** disable/remove the old QMod **`BuildInSeatruck/`** (game-root
   folder) and the two `Build In Seatruck-*.zip` files in `BepInEx/plugins/` —

@@ -1,4 +1,4 @@
-# Seatruck Jukebox v1.0.0
+# Build In Seatruck Plus v1.0.0
 
 **Build inside your Seatruck — and bring the music with you.** 🛥️🎵
 
@@ -26,11 +26,11 @@ untouched.)
 **Requires** [Tobey's BepInEx Pack for SBZ](https://www.nexusmods.com/subnauticabelowzero/mods/344)
 and [Nautilus](https://github.com/SubnauticaModding/Nautilus) 1.0.0+.
 
-Download **`SeatruckJukebox-1.0.0.zip`** below and extract so the file lands at:
+Download **`BuildInSeatruckPlus-1.0.0.zip`** below and extract so the file lands at:
 ```
-<game folder>/BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll
+<game folder>/BepInEx/plugins/BuildInSeatruckPlus/BuildInSeatruckPlus.dll
 ```
-*(Mod-manager users: `SeatruckJukebox-1.0.0-thunderstore.zip` is the packaged
+*(Mod-manager users: `BuildInSeatruckPlus-1.0.0-thunderstore.zip` is the packaged
 upload format.)*
 
 ---
@@ -40,5 +40,5 @@ Based on [Build In Seatruck](https://www.nexusmods.com/subnauticabelowzero/mods/
 by **BluesKutya** (MIT). Built with **Nautilus**; thanks to **Tobey** for the
 BepInEx pack.
 
-**Full details:** [README](https://github.com/TRusselo/SeatruckJukebox#readme) ·
+**Full details:** [README](https://github.com/TRusselo/BuildInSeatruckPlus#readme) ·
 [Changelog](CHANGELOG.md)

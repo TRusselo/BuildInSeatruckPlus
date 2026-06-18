@@ -3,3 +3,4 @@ obj/
 dist/
 build-tmp/
 chat.md
+*.zip

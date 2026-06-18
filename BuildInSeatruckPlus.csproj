@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>SeatruckJukebox</AssemblyName>
+    <AssemblyName>BuildInSeatruckPlus</AssemblyName>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Configuration>Release</Configuration>
@@ -9,7 +9,7 @@
     <GameManaged>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/SubnauticaZero_Data/Managed</GameManaged>
     <BepInExCore>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/core</BepInExCore>
     <NautilusDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/Nautilus</NautilusDir>
-    <DeployDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/SeatruckJukebox</DeployDir>
+    <DeployDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/BuildInSeatruckPlus</DeployDir>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,6 +39,6 @@
 
   <Target Name="Deploy" AfterTargets="Build">
     <MakeDir Directories="$(DeployDir)" />
-    <Copy SourceFiles="$(OutputPath)SeatruckJukebox.dll" DestinationFolder="$(DeployDir)" />
+    <Copy SourceFiles="$(OutputPath)BuildInSeatruckPlus.dll" DestinationFolder="$(DeployDir)" />
   </Target>
 </Project>

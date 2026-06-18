@@ -2,7 +2,7 @@ using FMODUnity;
 using HarmonyLib;
 using UnityEngine;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     // The current game blocks all in-Seatruck building inside Builder.CheckAsSubModule:
     //   1. it returns false if the aimed surface is parented to a SeaTruckSegment;

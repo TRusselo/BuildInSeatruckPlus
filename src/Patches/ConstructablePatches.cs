@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     // When the player is standing inside a Seatruck segment, allow construction
     // flags to pass. Vanilla CheckFlags falls through to its "outdoors" branch for

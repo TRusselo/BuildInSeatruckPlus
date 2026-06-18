@@ -1,6 +1,6 @@
-# Seatruck Jukebox
+# Build In Seatruck Plus
 
-[![Release](https://img.shields.io/github/v/release/TRusselo/SeatruckJukebox?sort=semver)](https://github.com/TRusselo/SeatruckJukebox/releases)
+[![Release](https://img.shields.io/github/v/release/TRusselo/BuildInSeatruckPlus?sort=semver)](https://github.com/TRusselo/BuildInSeatruckPlus/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Build inside your Seatruck — and bring the music with you.**
@@ -74,11 +74,11 @@ this mod will pull them in automatically.
 
 ### Manual
 1. Install the BepInEx pack and Nautilus (see Requirements).
-2. Download `SeatruckJukebox-x.y.z.zip` from the
-   [Releases](https://github.com/TRusselo/SeatruckJukebox/releases) page.
+2. Download `BuildInSeatruckPlus-x.y.z.zip` from the
+   [Releases](https://github.com/TRusselo/BuildInSeatruckPlus/releases) page.
 3. Extract it so that the file lands at:
    ```
-   <game folder>/BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll
+   <game folder>/BepInEx/plugins/BuildInSeatruckPlus/BuildInSeatruckPlus.dll
    ```
 4. Launch the game.
 
@@ -113,8 +113,8 @@ own unlocked-track playlist, so there's nothing extra to manage.
 
 ## Configuration
 
-Open **Options → Mod Options → Seatruck Jukebox** in-game. Settings are saved to
-`BepInEx/config/com.tristyn.seatruckjukebox.json`.
+Open **Options → Mod Options → Build In Seatruck Plus** in-game. Settings are saved to
+`BepInEx/config/com.tristyn.buildinseatruckplus.json`.
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -131,14 +131,14 @@ Open **Options → Mod Options → Seatruck Jukebox** in-game. Settings are save
 
 Requires the .NET SDK and a local install of the game + BepInEx + Nautilus
 (the `.csproj` references DLLs by absolute path — adjust the paths at the top of
-`SeatruckJukebox.csproj` to your install).
+`BuildInSeatruckPlus.csproj` to your install).
 
 ```bash
-dotnet build SeatruckJukebox.csproj -c Release
+dotnet build BuildInSeatruckPlus.csproj -c Release
 ```
 
 The build publicizes `Assembly-CSharp` (via `BepInEx.AssemblyPublicizer.MSBuild`)
-and copies the output DLL into `BepInEx/plugins/SeatruckJukebox/`.
+and copies the output DLL into `BepInEx/plugins/BuildInSeatruckPlus/`.
 
 To produce release zips:
 

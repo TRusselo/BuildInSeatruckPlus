@@ -5,7 +5,7 @@ using Nautilus.Crafting;
 using Nautilus.Handlers;
 using UnityEngine;
 
-namespace SeatruckJukebox.Buildables
+namespace BuildInSeatruckPlus.Buildables
 {
     internal static class MiniBuildables
     {

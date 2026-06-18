@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
     internal class HotkeyController : MonoBehaviour
     {

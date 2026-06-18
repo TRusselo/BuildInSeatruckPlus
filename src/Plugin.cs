@@ -2,16 +2,16 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Handlers;
-using SeatruckJukebox.Buildables;
+using BuildInSeatruckPlus.Buildables;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("com.snmodding.nautilus")]
     public class Plugin : BaseUnityPlugin
     {
-        public const string GUID = "com.tristyn.seatruckjukebox";
-        public const string NAME = "Seatruck Jukebox";
+        public const string GUID = "com.tristyn.buildinseatruckplus";
+        public const string NAME = "Build In Seatruck Plus";
         public const string VERSION = "1.0.0";
 
         public static ManualLogSource Log { get; private set; }

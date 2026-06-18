@@ -1,7 +1,7 @@
 using HarmonyLib;
 using UnityEngine;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     [HarmonyPatch(typeof(PowerConsumer), nameof(PowerConsumer.IsPowered))]
     internal static class PowerConsumer_IsPowered_Patch

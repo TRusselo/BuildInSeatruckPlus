@@ -2,9 +2,9 @@ using Nautilus.Json;
 using Nautilus.Options.Attributes;
 using UnityEngine;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
-    [Menu("Seatruck Jukebox")]
+    [Menu("Build In Seatruck Plus")]
     public class Config : ConfigFile
     {
         [Keybind("Playback hotkey (in Seatruck / base)")]

@@ -1,4 +1,4 @@
-# Seatruck Jukebox Implementation Plan
+# Build In Seatruck Plus Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -16,13 +16,13 @@
 - **Managed DLLs:** `<gameroot>/SubnauticaZero_Data/Managed/`
 - **BepInEx core:** `<gameroot>/BepInEx/core/`
 - **Nautilus:** `<gameroot>/BepInEx/plugins/Nautilus/Nautilus.dll`
-- **Project root:** `/home/user/SeatruckJukeboxMod/`
-- **Deploy target:** `<gameroot>/BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll`
+- **Project root:** `/home/user/BuildInSeatruckPlusMod/`
+- **Deploy target:** `<gameroot>/BepInEx/plugins/BuildInSeatruckPlus/BuildInSeatruckPlus.dll`
 - **Build command (used throughout):**
-  `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+  `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
   The csproj copies the DLL to the deploy target on successful build (post-build step).
 - **Load check (used throughout):** after launching the game once,
-  `grep -iE "SeatruckJukebox|Nautilus|error|exception" "<gameroot>/BepInEx/LogOutput.log" | tail -40`
+  `grep -iE "BuildInSeatruckPlus|Nautilus|error|exception" "<gameroot>/BepInEx/LogOutput.log" | tail -40`
 - Because this is a Unity mod against a closed-source DLL, there is no unit-test
   harness. Each task's verification = **compiles** + **loads without errors** +
   the stated **in-game manual check**. "Commit" steps assume a git repo in the
@@ -36,8 +36,8 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
 
 ### File structure
 ```
-/home/user/SeatruckJukeboxMod/
-  SeatruckJukebox.csproj
+/home/user/BuildInSeatruckPlusMod/
+  BuildInSeatruckPlus.csproj
   src/
     Plugin.cs                       # BepInEx entry point
     Config.cs                       # Nautilus options ConfigFile
@@ -57,9 +57,9 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
 ## Task 0: Project scaffold + empty plugin loads
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj`
-- Create: `/home/user/SeatruckJukeboxMod/src/Plugin.cs`
-- Create: `/home/user/SeatruckJukeboxMod/.gitignore`
+- Create: `/home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Plugin.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/.gitignore`
 
 - [ ] **Step 1: Create the csproj**
 
@@ -67,7 +67,7 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>SeatruckJukebox</AssemblyName>
+    <AssemblyName>BuildInSeatruckPlus</AssemblyName>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Configuration>Release</Configuration>
@@ -75,7 +75,7 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
     <GameManaged>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/SubnauticaZero_Data/Managed</GameManaged>
     <BepInExCore>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/core</BepInExCore>
     <NautilusDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/Nautilus</NautilusDir>
-    <DeployDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/SeatruckJukebox</DeployDir>
+    <DeployDir>/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/BuildInSeatruckPlus</DeployDir>
   </PropertyGroup>
 
   <ItemGroup>
@@ -105,7 +105,7 @@ game members used below (`Builder.prefab`, `Builder.canPlace`, `Builder.ghostMod
 
   <Target Name="Deploy" AfterTargets="Build">
     <MakeDir Directories="$(DeployDir)" />
-    <Copy SourceFiles="$(OutputPath)SeatruckJukebox.dll" DestinationFolder="$(DeployDir)" />
+    <Copy SourceFiles="$(OutputPath)BuildInSeatruckPlus.dll" DestinationFolder="$(DeployDir)" />
   </Target>
 </Project>
 ```
@@ -124,14 +124,14 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("com.snmodding.nautilus")]
     public class Plugin : BaseUnityPlugin
     {
-        public const string GUID = "com.tristyn.seatruckjukebox";
-        public const string NAME = "Seatruck Jukebox";
+        public const string GUID = "com.tristyn.buildinseatruckplus";
+        public const string NAME = "Build In Seatruck Plus";
         public const string VERSION = "1.0.0";
 
         public static ManualLogSource Log { get; private set; }
@@ -150,20 +150,20 @@ namespace SeatruckJukebox
 
 Run:
 ```bash
-cd /home/user/SeatruckJukeboxMod && git init -q && \
-dotnet build SeatruckJukebox.csproj -c Release
+cd /home/user/BuildInSeatruckPlusMod && git init -q && \
+dotnet build BuildInSeatruckPlus.csproj -c Release
 ```
-Expected: `Build succeeded`, and `BepInEx/plugins/SeatruckJukebox/SeatruckJukebox.dll` exists.
+Expected: `Build succeeded`, and `BepInEx/plugins/BuildInSeatruckPlus/BuildInSeatruckPlus.dll` exists.
 
 - [ ] **Step 5: Launch game once, verify plugin loads**
 
 Manual: launch the game (or ask the user to). Then run the load check command.
-Expected: a line `Seatruck Jukebox 1.0.0 loaded.` and no exceptions mentioning SeatruckJukebox.
+Expected: a line `Build In Seatruck Plus 1.0.0 loaded.` and no exceptions mentioning BuildInSeatruckPlus.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: scaffold BepInEx/Nautilus plugin that loads"
 ```
 
@@ -172,8 +172,8 @@ git commit -q -m "feat: scaffold BepInEx/Nautilus plugin that loads"
 ## Task 1: Config + Nautilus options menu
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/Config.cs`
-- Modify: `/home/user/SeatruckJukeboxMod/src/Plugin.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Config.cs`
+- Modify: `/home/user/BuildInSeatruckPlusMod/src/Plugin.cs`
 
 - [ ] **Step 1: Create `src/Config.cs`**
 
@@ -182,9 +182,9 @@ using Nautilus.Json;
 using Nautilus.Options.Attributes;
 using UnityEngine;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
-    [Menu("Seatruck Jukebox")]
+    [Menu("Build In Seatruck Plus")]
     public class Config : ConfigFile
     {
         [Keybind("Playback hotkey (in Seatruck / base)")]
@@ -227,19 +227,19 @@ Add `using Nautilus.Handlers;` and a static field + registration. Replace the
 
 - [ ] **Step 3: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded`.
 
 - [ ] **Step 4: In-game verify options appear**
 
-Manual: launch game → Options → Mod Options. Expected: a "Seatruck Jukebox"
+Manual: launch game → Options → Mod Options. Expected: a "Build In Seatruck Plus"
 section with the hotkey binder, long-press slider, and four toggles. Changing
 and reopening persists values (written to `BepInEx/config/...json`).
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: add config and Nautilus options menu"
 ```
 
@@ -248,14 +248,14 @@ git commit -q -m "feat: add config and Nautilus options menu"
 ## Task 2: Port SeaTruckSegmentHelper
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/SeaTruckSegmentHelper.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/SeaTruckSegmentHelper.cs`
 
 - [ ] **Step 1: Create the helper**
 
 ```csharp
 using UnityEngine;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
     internal static class SeaTruckSegmentHelper
     {
@@ -285,13 +285,13 @@ namespace SeatruckJukebox
 
 - [ ] **Step 2: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded`.
 
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: port SeaTruckSegmentHelper"
 ```
 
@@ -300,7 +300,7 @@ git commit -q -m "feat: port SeaTruckSegmentHelper"
 ## Task 3: Port Builder patches (CheckTag, TryPlace, ValidateOutdoor)
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/Patches/BuilderPatches.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Patches/BuilderPatches.cs`
 
 - [ ] **Step 1: Create the patch file**
 
@@ -309,7 +309,7 @@ using FMODUnity;
 using HarmonyLib;
 using UnityEngine;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     [HarmonyPatch(typeof(Builder), nameof(Builder.CheckTag))]
     internal static class Builder_CheckTag_Patch
@@ -413,14 +413,14 @@ namespace SeatruckJukebox.Patches
 
 - [ ] **Step 2: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded` (publicizer makes `prefab`/`canPlace`/`ghostModel`/
 `placePosition`/`placeRotation`/`placementTarget`/`allowedOutside` accessible).
 
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: port Builder placement patches"
 ```
 
@@ -429,8 +429,8 @@ git commit -q -m "feat: port Builder placement patches"
 ## Task 4: Constructable.CheckFlags (reworked) + power/entry patches
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/Patches/ConstructablePatches.cs`
-- Create: `/home/user/SeatruckJukeboxMod/src/Patches/PowerAndEntryPatches.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Patches/ConstructablePatches.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Patches/PowerAndEntryPatches.cs`
 
 Background: the original patched an instance `Constructable.CheckFlags` and forced
 the segment to be a SubRoot. The current method is
@@ -444,7 +444,7 @@ on `allowedInSub`.
 ```csharp
 using HarmonyLib;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     [HarmonyPatch(typeof(Constructable), nameof(Constructable.CheckFlags))]
     internal static class Constructable_CheckFlags_Patch
@@ -478,7 +478,7 @@ namespace SeatruckJukebox.Patches
 using HarmonyLib;
 using UnityEngine;
 
-namespace SeatruckJukebox.Patches
+namespace BuildInSeatruckPlus.Patches
 {
     [HarmonyPatch(typeof(PowerConsumer), nameof(PowerConsumer.IsPowered))]
     internal static class PowerConsumer_IsPowered_Patch
@@ -507,13 +507,13 @@ namespace SeatruckJukebox.Patches
 
 - [ ] **Step 3: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded`.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: rework CheckFlags + port power/entry patches"
 ```
 
@@ -525,8 +525,8 @@ No code. This validates Tasks 2-4 together before adding new content.
 
 - [ ] **Step 1: Launch game, load check**
 
-Run the load check command. Expected: `Seatruck Jukebox 1.0.0 loaded.`, no
-exceptions from any `SeatruckJukebox.Patches.*` patch during scene load.
+Run the load check command. Expected: `Build In Seatruck Plus 1.0.0 loaded.`, no
+exceptions from any `BuildInSeatruckPlus.Patches.*` patch during scene load.
 
 - [ ] **Step 2: In-game build test**
 
@@ -540,7 +540,7 @@ powered while you can breathe inside.
 
 If a fix was required, commit it:
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "fix: build-in-seatruck verification fixes"
 ```
 
@@ -549,8 +549,8 @@ git commit -q -m "fix: build-in-seatruck verification fixes"
 ## Task 6: Mini Jukebox + Mini Speaker buildables
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/Buildables/MiniBuildables.cs`
-- Modify: `/home/user/SeatruckJukeboxMod/src/Plugin.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/Buildables/MiniBuildables.cs`
+- Modify: `/home/user/BuildInSeatruckPlusMod/src/Plugin.cs`
 
 Design points:
 - Clone vanilla `TechType.Jukebox` (scale 0.25) and `TechType.Speaker` (scale 0.5).
@@ -576,7 +576,7 @@ using Nautilus.Crafting;
 using Nautilus.Handlers;
 using UnityEngine;
 
-namespace SeatruckJukebox.Buildables
+namespace BuildInSeatruckPlus.Buildables
 {
     internal static class MiniBuildables
     {
@@ -646,7 +646,7 @@ namespace SeatruckJukebox.Buildables
 
 - [ ] **Step 2: Call `MiniBuildables.Register()` from `Plugin.Awake`**
 
-In `Plugin.cs`, add `using SeatruckJukebox.Buildables;` and insert the registration
+In `Plugin.cs`, add `using BuildInSeatruckPlus.Buildables;` and insert the registration
 call **after** config registration and **before/after** `PatchAll` (order does not
 matter), so `Awake` reads:
 
@@ -663,7 +663,7 @@ matter), so `Awake` reads:
 
 - [ ] **Step 3: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded`.
 
 - [ ] **Step 4: In-game verify buildables**
@@ -678,7 +678,7 @@ Speaker nearby and confirm audio is clear inside the cab.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: add Mini Jukebox and Mini Speaker buildables"
 ```
 
@@ -687,8 +687,8 @@ git commit -q -m "feat: add Mini Jukebox and Mini Speaker buildables"
 ## Task 7: Hotkey controller (gated play/stop/next)
 
 **Files:**
-- Create: `/home/user/SeatruckJukeboxMod/src/HotkeyController.cs`
-- Modify: `/home/user/SeatruckJukeboxMod/src/Plugin.cs`
+- Create: `/home/user/BuildInSeatruckPlusMod/src/HotkeyController.cs`
+- Modify: `/home/user/BuildInSeatruckPlusMod/src/Plugin.cs`
 
 Behaviour:
 - Only acts when `Player.main` exists and the player is inside a `SeaTruckSegment`
@@ -704,7 +704,7 @@ Behaviour:
 ```csharp
 using UnityEngine;
 
-namespace SeatruckJukebox
+namespace BuildInSeatruckPlus
 {
     internal class HotkeyController : MonoBehaviour
     {
@@ -808,7 +808,7 @@ GameObject persists):
 
 - [ ] **Step 3: Build**
 
-Run: `dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release`
+Run: `dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release`
 Expected: `Build succeeded`.
 
 - [ ] **Step 4: In-game verify hotkey**
@@ -821,7 +821,7 @@ and R no longer does. Outside any interior (swimming), R does nothing.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "feat: add gated play/stop/next hotkey controller"
 ```
 
@@ -851,10 +851,10 @@ Expected: the three items now live in `_disabled_mods/`.
 
 Run:
 ```bash
-dotnet build /home/user/SeatruckJukeboxMod/SeatruckJukebox.csproj -c Release && \
-ls -la "/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/SeatruckJukebox/"
+dotnet build /home/user/BuildInSeatruckPlusMod/BuildInSeatruckPlus.csproj -c Release && \
+ls -la "/home/user/.local/share/Steam/steamapps/common/SubnauticaZero/BepInEx/plugins/BuildInSeatruckPlus/"
 ```
-Expected: `SeatruckJukebox.dll` present and freshly dated.
+Expected: `BuildInSeatruckPlus.dll` present and freshly dated.
 
 - [ ] **Step 3: Full in-game regression**
 
@@ -871,7 +871,7 @@ Manual checklist (single play session):
 - [ ] **Step 4: Final commit + tag**
 
 ```bash
-cd /home/user/SeatruckJukeboxMod && git add -A && \
+cd /home/user/BuildInSeatruckPlusMod && git add -A && \
 git commit -q -m "chore: disable legacy QMod; final 1.0.0" && \
 git tag v1.0.0
 ```
