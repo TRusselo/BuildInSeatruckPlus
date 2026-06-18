@@ -11,6 +11,19 @@ plus a hotkey to control playback from anywhere inside a Seatruck or base.
 It also re-enables **building inside the Seatruck** in general (a BepInEx port,
 updated for the current game, of BluesKutya's *Build In Seatruck*).
 
+![Build anything inside the Seatruck](assets/promo-yodawg.png)
+
+---
+
+## Media
+
+| | |
+|---|---|
+| ![Placing inside the Seatruck](assets/screenshot-placement-ghost.png) | ![Mini Speakers in the cockpit](assets/screenshot-speakers-cockpit.png) |
+| *Liberal placement — the ghost goes green inside the cab* | *Mini Speakers mounted either side of the cockpit* |
+| ![Now playing notification](assets/screenshot-now-playing.png) | ![Jukebox playback UI](assets/screenshot-jukebox-ui.png) |
+| *"Now playing" toast on track change* | *Driving with your tunes* |
+
 ---
 
 ## Features
