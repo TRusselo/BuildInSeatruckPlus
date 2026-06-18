@@ -2,6 +2,7 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Handlers;
+using SeatruckJukebox.Buildables;
 
 namespace SeatruckJukebox
 {
@@ -20,6 +21,7 @@ namespace SeatruckJukebox
         {
             Log = Logger;
             Config = OptionsPanelHandler.RegisterModOptions<Config>();
+            MiniBuildables.Register();
             new Harmony(GUID).PatchAll();
             Log.LogInfo($"{NAME} {VERSION} loaded.");
         }
