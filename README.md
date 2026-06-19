@@ -65,10 +65,11 @@ shuffle, and notifications.
 |------------|-------|
 | **Subnautica: Below Zero** | Current Steam build |
 | **BepInEx** for Below Zero | [Tobey's BepInEx Pack for Subnautica: Below Zero](https://www.nexusmods.com/subnauticabelowzero/mods/344) (BepInEx 5.4.x) |
-| **Nautilus** | 1.0.0 or newer ([SubnauticaModding/Nautilus](https://github.com/SubnauticaModding/Nautilus)) |
+| **Nautilus** | 1.0.0 or newer — [Nexus](https://www.nexusmods.com/subnautica/mods/1262) / [GitHub releases](https://github.com/SubnauticaModding/Nautilus/releases) |
 
-Nautilus and BepInEx must be installed first. If you use a mod manager, adding
-this mod will pull them in automatically.
+Nautilus and BepInEx must be installed first. **Nautilus is not on Thunderstore**,
+so mod-manager users still have to install it manually into `BepInEx/plugins`
+(the manager will pull in the BepInEx pack, but not Nautilus).
 
 ---
 
