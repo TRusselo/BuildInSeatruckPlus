@@ -3,7 +3,9 @@
 ### "Build In Seatruck" code. Nexus policy requires it regardless of the MIT license.
 
 [center][size=6][b]Build In Seatruck Plus[/b][/size]
-[size=4][i]Build inside your Seatruck — and bring the music with you.[/i][/size][/center]
+[size=4][i]Build inside your Seatruck — and bring the music with you.[/i][/size]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/Screenshot_mini-juke-speakers-in-cab-in-dock-track.png[/img][/center]
 
 [line]
 
@@ -13,6 +15,25 @@ A [b]Subnautica: Below Zero[/b] mod with two headline features:
 [*][b]🛠️ Build In Seatruck[/b] — use the Habitat Builder to place buildables [i]inside[/i] your Seatruck. Lockers, fabricators, planters, decorations — they ride with the vehicle, and detaching/reattaching modules works as expected. This is a BepInEx port, [b]updated for the current game[/b], of BluesKutya's [i]Build In Seatruck[/i].
 [*][b]🎵 Mini Jukebox & Speakers[/b] — compact, Seatruck-sized buildables that play the music tracks you've unlocked from Jukebox Disks, plus a hotkey to control playback on the move.
 [/list]
+
+[line]
+
+[center][size=5][b]Media[/b][/size]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/Screenshot_mini-juke.jpg[/img]
+[i]Mini Jukebox playing in the cab while you pilot[/i]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/screenshot-placement-ghost.png[/img]
+[i]Liberal placement — the ghost goes green inside the cab[/i]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/Screenshot_build-in-dock.png[/img]
+[i]Build in the Seatruck dock room too — here an Autosorter and a Mini Speaker[/i]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/Screenshot_20260618_003513.png[/img]
+[i]Mini Speaker mounted next to a wall locker[/i]
+
+[img]https://raw.githubusercontent.com/TRusselo/BuildInSeatruckPlus/main/assets/screenshot-jukebox-ui.png[/img]
+[i]The native jukebox control screen[/i][/center]
 
 [line]
 
