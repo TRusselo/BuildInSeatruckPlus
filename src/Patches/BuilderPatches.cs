@@ -79,11 +79,45 @@ namespace BuildInSeatruckPlus.Patches
             constructable.SetIsInside(true);
             SkyEnvironmentChanged.Send(go, seg);
 
+            // Built items ride with the Seatruck as children of its compound
+            // rigidbody. On their default (solid) layer their colliders snag on the
+            // moonpool dock's static geometry while the player drives in, stopping
+            // the hull before the automated docking sequence can take over. Moving
+            // them to the Useable layer makes them interaction/raycast-only (still
+            // usable and deconstructable) but no longer a physical obstacle.
+            NeutralizeCollidersForDocking(go);
+
             Builder.ghostModel = null;
             Builder.prefab = null;
             Builder.canPlace = false;
             __result = true;
             return false;
+        }
+
+        static readonly int UseableLayer = LayerMask.NameToLayer("Useable");
+
+        static void NeutralizeCollidersForDocking(GameObject go)
+        {
+            foreach (var col in go.GetComponentsInChildren<Collider>(true))
+                col.gameObject.layer = UseableLayer;
+        }
+    }
+
+    // Restore building inside the Seatruck (moonpool expansion) dock room. Its
+    // surfaces carry the "DenyBuilding" tag, which vanilla CheckTag rejects. Allow
+    // it only when the aimed collider belongs to a MoonpoolExpansionManager, so
+    // every other DenyBuilding surface in the game stays protected.
+    [HarmonyPatch(typeof(Builder), "CheckTag")]
+    internal static class Builder_CheckTag_Patch
+    {
+        static bool Prefix(Collider c, ref bool __result)
+        {
+            if (c != null && c.GetComponentInParent<MoonpoolExpansionManager>() != null)
+            {
+                __result = true;
+                return false;
+            }
+            return true; // not the dock: run vanilla CheckTag
         }
     }
 }

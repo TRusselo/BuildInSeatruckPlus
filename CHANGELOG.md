@@ -3,6 +3,26 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-06-18
+
+### Fixed
+- **Docking no longer blocked by items built in the Seatruck.** Items placed in the
+  truck kept solid colliders that snagged on the moonpool dock's geometry while
+  driving in, stopping the hull before the auto-dock sequence could take over.
+  Placed items are now moved to the `Useable` layer (interaction/raycast only, still
+  usable and deconstructable) so they no longer obstruct docking. Affects all built
+  items, not just the mini buildables.
+- **Restored building inside the Seatruck dock room.** Its surfaces carry the
+  `DenyBuilding` tag; a scoped `Builder.CheckTag` patch now allows placement there
+  (only when aiming at moonpool-expansion geometry — every other no-build surface
+  stays protected).
+
+### Docs
+- Removed an inaccurate "used with permission" claim from the Nexus description and
+  added a do-not-upload guard: Nexus requires the original author's explicit
+  permission to host ported code, independent of the MIT license.
+- Updated the README media gallery with real in-game screenshots.
+
 ## [1.0.0] - 2026-06-17
 
 Initial release.

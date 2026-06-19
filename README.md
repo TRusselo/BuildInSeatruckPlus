@@ -23,10 +23,12 @@ A **Subnautica: Below Zero** mod with two headline features:
 
 | | |
 |---|---|
-| ![Placing inside the Seatruck](assets/screenshot-placement-ghost.png) | ![Mini Speakers in the cockpit](assets/screenshot-speakers-cockpit.png) |
-| *Liberal placement — the ghost goes green inside the cab* | *Mini Speakers mounted either side of the cockpit* |
-| ![Now playing notification](assets/screenshot-now-playing.png) | ![Jukebox playback UI](assets/screenshot-jukebox-ui.png) |
-| *"Now playing" toast on track change* | *Driving with your tunes* |
+| ![Mini Jukebox playing in the Seatruck cab](assets/Screenshot_mini-juke.jpg) | ![Mini Speaker mounted in the cab](assets/Screenshot_20260618_003513.png) |
+| *Mini Jukebox playing in the cab while you pilot* | *Mini Speaker mounted next to a wall locker* |
+| ![Buildables inside the Seatruck cab](assets/Screenshot_20260618_003448.png) | ![Placing inside the Seatruck](assets/screenshot-placement-ghost.png) |
+| *Build right inside the cab — not just the modules* | *Liberal placement — the ghost goes green inside the cab* |
+| ![Mini Speakers in the cockpit](assets/screenshot-speakers-cockpit.jpg) | ![Jukebox playback UI](assets/screenshot-jukebox-ui.png) |
+| *Mini Speakers in the cockpit* | *The native jukebox control UI* |
 
 ---
 

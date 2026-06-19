@@ -1,3 +1,7 @@
+### DRAFT — DO NOT UPLOAD TO NEXUS until BluesKutya grants explicit permission to
+### reuse "Build In Seatruck" code. Nexus policy requires it regardless of the MIT
+### license. Delete these three lines before pasting the description.
+
 [size=5][b]Build In Seatruck Plus[/b][/size]
 
 [b]Build inside your Seatruck — and bring the music with you.[/b]
@@ -30,7 +34,7 @@ Two headline features: place buildables [i]inside[/i] your Seatruck so they ride
 Get inside a Seatruck, equip the Habitat Builder, and build as you would in a base — anything you place rides with the vehicle. For music: the mini items unlock alongside the vanilla Jukebox (or tick "Unlock buildables at start" in the mod options), then click the jukebox screen or use the hotkey (hold = play/stop, tap = next).
 
 [size=4][b]Credits[/b][/size]
-Based on [url=https://www.nexusmods.com/subnauticabelowzero/mods/287]Build In Seatruck[/url] by [b]BluesKutya[/b] (MIT), used with permission. Built with [url=https://github.com/SubnauticaModding/Nautilus]Nautilus[/url]. Thanks to Tobey for the BepInEx pack.
+Based on [url=https://www.nexusmods.com/subnauticabelowzero/mods/287]Build In Seatruck[/url] by [b]BluesKutya[/b] (MIT). Built with [url=https://github.com/SubnauticaModding/Nautilus]Nautilus[/url]. Thanks to Tobey for the BepInEx pack.
 
 [size=4][b]Source / License[/b][/size]
 Open source (MIT): https://github.com/TRusselo/BuildInSeatruckPlus
