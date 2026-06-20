@@ -3,6 +3,21 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] - 2026-06-20
+
+### Fixed
+- **Items built in rear modules now stay with their module when docking.** Placed
+  items were parented to the interior's head segment (the cab) because
+  `Player.currentInterior` always resolves to the head, regardless of which module
+  you're standing in. On docking, the game disconnects the tail and rotates the cab
+  90°, which dragged module-built items away with the cab instead of leaving them in
+  their module. Items are now parented to the segment that owns the surface they're
+  built on, so they ride and detach with the correct module.
+- **Resolved collision when undocking.** A downstream effect of the same
+  mis-parenting: items displaced by the docking rotation clipped during the cab's
+  undock eject. Correct parenting keeps them in place. *(Items built before this
+  update keep their old parent — deconstruct and rebuild them to apply the fix.)*
+
 ## [1.0.1] - 2026-06-18
 
 ### Fixed

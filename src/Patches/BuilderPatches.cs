@@ -68,7 +68,22 @@ namespace BuildInSeatruckPlus.Patches
             RuntimeManager.PlayOneShot("event:/tools/builder/place", Builder.ghostModel.transform.position);
 
             var go = Object.Instantiate(Builder.prefab);
-            go.transform.parent = seg.transform;
+
+            // Parent to the segment that actually owns the surface we're building
+            // on, NOT the interior's head segment. Player.currentInterior is always
+            // the head cab (SeaTruckSegment.Enter calls EnterInterior(GetFirstSegment())),
+            // so getCurrentSeaTruckSegment() can't tell which module the player is
+            // standing in. Parenting everything to the head means items built in a
+            // rear module still hang off the cab: while driving the whole train moves
+            // as one so it looks fine, but docking disconnects the tail (modules become
+            // independent) and rotates the cab 90 degrees, dragging module-built items
+            // away with the cab. The surface's own segment is the correct parent, so
+            // items ride and detach with the module that holds them.
+            var targetSeg = Builder.placementTarget != null
+                ? SeaTruckSegmentHelper.getParentSeaTruckSegment(Builder.placementTarget)
+                : null;
+            var parentSeg = targetSeg != null ? targetSeg : seg;
+            go.transform.parent = parentSeg.transform;
             go.transform.position = Builder.placePosition;
             go.transform.rotation = Builder.placeRotation;
 
@@ -77,7 +92,7 @@ namespace BuildInSeatruckPlus.Patches
             if (Builder.ghostModel != null)
                 Object.Destroy(Builder.ghostModel);
             constructable.SetIsInside(true);
-            SkyEnvironmentChanged.Send(go, seg);
+            SkyEnvironmentChanged.Send(go, parentSeg);
 
             // Built items ride with the Seatruck as children of its compound
             // rigidbody. On their default (solid) layer their colliders snag on the
