@@ -100,21 +100,13 @@ namespace BuildInSeatruckPlus.Patches
             // the hull before the automated docking sequence can take over. Moving
             // them to the Useable layer makes them interaction/raycast-only (still
             // usable and deconstructable) but no longer a physical obstacle.
-            NeutralizeCollidersForDocking(go);
+            SeaTruckSegmentHelper.NeutralizeCollidersForDocking(go);
 
             Builder.ghostModel = null;
             Builder.prefab = null;
             Builder.canPlace = false;
             __result = true;
             return false;
-        }
-
-        static readonly int UseableLayer = LayerMask.NameToLayer("Useable");
-
-        static void NeutralizeCollidersForDocking(GameObject go)
-        {
-            foreach (var col in go.GetComponentsInChildren<Collider>(true))
-                col.gameObject.layer = UseableLayer;
         }
     }
 

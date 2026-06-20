@@ -3,6 +3,18 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.3] - 2026-06-20
+
+### Fixed
+- **Plants in Seatruck planters no longer block docking/undocking.** Plant models
+  are spawned into a planter after it's placed (seedlings via `Planter.AddItem`,
+  grown models via `GrowingPlant`'s async spawn), so the placement-time collider
+  fix never touched them — they kept solid `Default`-layer colliders that snagged
+  on the dock. A `Planter.SetupRenderers` postfix now moves plant colliders to the
+  `Useable` layer, but only for planters inside a Seatruck. Covers seedlings,
+  grown plants, harvestable fruit/seeds (incl. ones currently picked), and plants
+  restored on save load.
+
 ## [1.0.2] - 2026-06-20
 
 ### Fixed
