@@ -1,3 +1,6 @@
+# AI VIBE CODED PROJECT.
+# CLAUDE CHAT LOG INCLUDED
+
 # Build In Seatruck Plus
 
 [![Release](https://img.shields.io/github/v/release/TRusselo/BuildInSeatruckPlus?sort=semver)](https://github.com/TRusselo/BuildInSeatruckPlus/releases)
