@@ -36,5 +36,21 @@ namespace BuildInSeatruckPlus
             foreach (var col in go.GetComponentsInChildren<Collider>(true))
                 col.gameObject.layer = UseableLayer;
         }
+
+        // Re-apply the docking collider fix to every buildable under a segment (and
+        // its connected modules, which are transform children while attached). The
+        // per-placement and per-plant fixes don't survive a save/load — the game
+        // respawns buildables and plants from their prefabs on their solid default
+        // layers — so this is called again at the moments right before a collision
+        // could happen (piloting in, undocking out). Only Constructables are touched,
+        // so the Seatruck's own hull/dock colliders are left alone; plants and fruit
+        // ride along because they live under the planter Constructable.
+        public static void NeutralizeBuiltColliders(GameObject root)
+        {
+            if (root == null)
+                return;
+            foreach (var c in root.GetComponentsInChildren<Constructable>(true))
+                NeutralizeCollidersForDocking(c.gameObject);
+        }
     }
 }

@@ -3,6 +3,19 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.4] - 2026-06-21
+
+### Fixed
+- **Docking collision fix now survives save/load.** The collider re-layering ran
+  only at placement (buildables) and render setup (plants), both runtime-only. On
+  load the game respawns buildables and plants from their prefabs on their solid
+  default layers, so docking got blocked again after reloading. The fix is now
+  re-applied at the two maneuvers that precede a collision — `SeaTruckMotor.StartPiloting`
+  (driving in to dock; also re-fires on load when saved while piloting) and
+  `MoonpoolExpansionManager.StartUndocking` (the undock eject, for a game loaded while
+  docked). Both sweep buildable `Constructable` subtrees, so plants and fruit ride
+  along and the Seatruck hull is left alone.
+
 ## [1.0.3] - 2026-06-20
 
 ### Fixed
