@@ -280,7 +280,7 @@
 
   Want me to hold for your test results before touching anything else?
 
-✻ Sautéed for 3m 6s
+✻ Cooked for 3m 6s
 ● Auto mode lets Claude handle permission prompts automatically — Claude
   checks each tool call for risky actions and prompt injection before 
   executing. Actions Claude identifies as safe are executed, while 
@@ -399,7 +399,7 @@
   corrections), update the CHANGELOG, and cut a v1.0.1 GitHub release? That's
   GitHub-only — the Nexus gate stays shut until permission lands.
 
-✻ Brewed for 1m 56s
+✻ Sautéed for 1m 56s
 
 ❯ commit this and cut v1.0.1 publish to github.                                 
   i have emailed the user, awaiting response.  I framed my mod more around the  
@@ -641,7 +641,7 @@
   (https://wiki.thunderstore.io/moderation/global-rules), Thunderstore Package
   Format docs (https://thunderstore.io/c/repo/create/docs/)
 
-✻ Brewed for 4m 47s
+✻ Churned for 4m 47s
 ❯ yes                                                                           
 
 ● I'll verify the exact Thunderstore dependency strings for Nautilus and the
@@ -722,7 +722,7 @@
   Either way the icon.png is still the 256² placeholder and should be replaced
   before any store listing. Which path do you want?
 
-✻ Brewed for 2m 4s
+✻ Cooked for 2m 4s
 
 ※ recap: Goal: ship the Build In Seatruck Plus mod. The docking and dock-room fixes are done and GitHub v1.0.1 is published. Next: you decide whether to skip Thunderstore (recommended, since Nautilus isn't hosted there) or make the manifest uploadable anyway. (disable recaps in /config)
 
@@ -834,7 +834,7 @@
   Nexus-vs-Thunderstore policy difference) to memory so it won't get re-derived
   later. Nothing else is pending unless you want me to take a crack at the icon.
 
-✻ Churned for 2m 6s
+✻ Crunched for 2m 6s
 
 ❯ icon.png updated                                                              
 
@@ -873,7 +873,7 @@
 
   Nothing else outstanding. Memory's updated to reflect the mod is store-ready.
 
-✻ Sautéed for 40s
+✻ Cogitated for 40s
 
 ※ recap: Build In Seatruck Plus mod: v1.0.1 with the docking-collision and dock-room building fixes is shipped to GitHub and the Thunderstore package is upload-ready. Next action is yours: upload to Thunderstore, or wait on BluesKutya's permission before posting to Nexus. (disable recaps in /config)
 
@@ -1543,7 +1543,7 @@
   ones. The raw GitHub URLs are correct and live, so it's purely down to Nexus's
   hotlinking policy.
 
-✻ Worked for 2m 23s
+✻ Crunched for 2m 23s
 
 ※ recap: Goal: ship the Build In Seatruck Plus mod. Both bugs are fixed, v1.0.1 is released on GitHub, and the Nexus BBCode description with embedded GitHub images is written. Next: you publish on Nexus (pending BluesKutya's permission) and Thunderstore. (disable recaps in /config)
 
@@ -1754,7 +1754,7 @@
   I'll treat it as a separate issue. Once you confirm, I'll commit and cut
   v1.0.2.
 
-✻ Worked for 5m 33s
+✻ Cogitated for 5m 33s
 
 ❯ fixed. deploy and push updates                                                
 
@@ -1904,7 +1904,7 @@
   re-iconned in place). If you actually have a newer png than the one in the
   repo, drop it in as icon.png and I'll rebuild and re-cut.
 
-✻ Cogitated for 1m 28s
+✻ Sautéed for 1m 28s
 
 ※ recap: Goal: ship the Build In Seatruck Plus mod fixes. v1.0.2 is built, pushed, and released on GitHub with both zips, including the corrected thunderstore icon. Next: upload the v1.0.2 thunderstore zip to Thunderstore so its page shows the real icon. (disable recaps in /config)
 
@@ -2077,7 +2077,7 @@
   Once you confirm, I'll roll it into v1.0.3 (commit, zips, tag, GitHub
   release).
 
-✻ Brewed for 3m 53s
+✻ Sautéed for 3m 53s
 
 ❯ fully grown plants usually have pickable fruit / food or seeds.  are these    
   covered too?                                                                  
@@ -2123,7 +2123,7 @@
   Both should be collision-free. Once you've confirmed the planter + fruit
   cases, I'll cut v1.0.3.
 
-✻ Cogitated for 46s
+✻ Churned for 46s
 
 ※ recap: Goal: ship docking fixes for the Build In Seatruck Plus mod. I've built and deployed a planter/fruit collision fix (covering grown plants and regrowing fruit) but haven't released it. Next: you test in-game, then I cut v1.0.3. (disable recaps in /config)
 
@@ -2325,3 +2325,251 @@
 ✻ Churned for 1m 46s
 
 ※ recap: Goal: ship Build In Seatruck Plus to stores. v1.0.3 is released on GitHub with all docking bugs fixed, and the Nexus description is ready now that BluesKutya granted permission. Next: you upload to Nexus and Thunderstore.
+
+❯ /export claude-chat-day3.md                                                     ⎿  Conversation exported to: /home/user/BuildInSeatruckPlus/claude-chat-day3.md
+
+
+※ recap: Goal: ship and publish the Build In Seatruck Plus mod. We finished v1.0.3 (docking, undocking, and planter-plant collision fixes) and made the Nexus description ready now that BluesKutya granted permission. Next: you upload v1.0.3 to Nexus.
+
+❯ anti-collisions dont seem to be surviving save close load.                    
+  juke and plants                                                               
+
+● New problem: the layer fix is runtime-only and doesn't persist. On save/load
+  the game respawns the buildables and plants from their prefabs on their
+  default layers — and neither our TryPlace patch nor (apparently) the
+  SetupRenderers path re-applies the fix on load. So docking blocks again after
+  a reload.
+
+  I need a hook that re-applies the fix on every relevant occasion, independent
+  of save/load. Let me look at the piloting entry point — re-layering when you
+  start driving is timing-correct (before any docking) and runs fresh each
+  session regardless of load.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● StartPiloting is the entry point for driving (and re-fires on load via
+  SeaTruckMotor.Start). But undocking hands back control via SetPiloting, not
+  StartPiloting — so a game loaded while docked would miss it. I'll re-apply at
+  both maneuver points that precede a collision: start of piloting (covers
+  docking) and start of undocking (covers the eject after a docked load). Both
+  re-run fresh each session, so they're load-proof, and both sweep Constructable
+  subtrees so plants/fruit come along.
+
+  Let me add a shared helper and the two patches.
+
+● Update(src/SeaTruckSegmentHelper.cs)
+  ⎿  Added 16 lines
+      36              foreach (var col in go.GetComponentsInChildren<Coll
+          ider>(true))
+      37                  col.gameObject.layer = UseableLayer;
+      38          }
+      39 +                                                               
+      40 +        // Re-apply the docking collider fix to every buildable
+         + under a segment (and                                          
+      41 +        // its connected modules, which are transform children 
+         +while attached). The                                           
+      42 +        // per-placement and per-plant fixes don't survive a sa
+         +ve/load — the game                                             
+      43 +        // respawns buildables and plants from their prefabs on
+         + their solid default                                           
+      44 +        // layers — so this is called again at the moments righ
+         +t before a collision                                           
+      45 +        // could happen (piloting in, undocking out). Only Cons
+         +tructables are touched,                                        
+      46 +        // so the Seatruck's own hull/dock colliders are left a
+         +lone; plants and fruit                                         
+      47 +        // ride along because they live under the planter Const
+         +ructable.                                                      
+      48 +        public static void NeutralizeBuiltColliders(GameObject 
+         +root)                                                          
+      49 +        {                                                      
+      50 +            if (root == null)                                  
+      51 +                return;                                        
+      52 +            foreach (var c in root.GetComponentsInChildren<Cons
+         +tructable>(true))                                              
+      53 +                NeutralizeCollidersForDocking(c.gameObject);   
+      54 +        }                                                      
+      55      }
+      56  }
+
+● Write(src/Patches/DockPersistencePatches.cs)
+  ⎿  Wrote 44 lines to src/Patches/DockPersistencePatches.cs
+       1 using HarmonyLib;
+       3 namespace BuildInSeatruckPlus.Patches
+       4 {
+          plant rendered) is
+       6     // runtime-only: on save/load the game respawns everything f
+       7     // solid default layers, and our placement/SetupRenderers ho
+         oks don't re-run for
+         pply the fix at the
+       9     // two maneuvers that precede a collision. Both re-run every
+      10     // no longer depends on having been placed this session.
+     … +53 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Builds clean, deployed. Not released yet — this one needs save/load testing
+  specifically.
+
+  Why it wasn't surviving load
+
+  Our fixes ran at placement (buildables) and render setup (plants) — both
+  runtime-only. On save/load the game respawns buildables and plants from their
+  prefabs on their solid default layers, and those hooks don't re-fire for
+  restored objects. So every load reset the collision.
+
+  Fix
+
+  Re-apply the fix at the two moments right before a collision can occur, both
+  of which re-run every session (so they don't depend on this-session
+  placement):
+  - SeaTruckMotor.StartPiloting → covers driving into the dock. Also re-fires on
+  load if you saved while piloting.
+  - MoonpoolExpansionManager.StartUndocking → covers the undock eject, for a
+  game loaded while docked (undock hands control back via SetPiloting, which
+  StartPiloting wouldn't catch).
+
+  Both sweep Constructable subtrees, so the Seatruck hull is untouched while
+  plants and fruit (which live under the planter Constructable) ride along. The
+  existing placement/SetupRenderers patches stay for immediate post-build
+  correctness.
+
+  Please test (the load cases are the point)
+
+  1. Build a juke + a planter with a growing plant → save, fully quit, reload →
+  drive in and dock. Should not block.
+  2. Save while docked → reload → undock. Should not block.
+  3. Sanity: normal build-and-dock without reloading still works.
+
+  Confirm and I'll cut v1.0.4.
+
+✻ Crunched for 3m 41s
+
+※ recap: We're fixing docking collisions in your Build In Seatruck Plus mod; the latest fix makes the anti-collision survive save/load and is built and deployed. Next: test the two reload scenarios in-game, then I cut v1.0.4.
+
+❯ fixed, both load cases work. cut v1.0.4                                       
+
+● Both load cases confirmed. Cutting v1.0.4.
+
+● Update(src/Plugin.cs)
+  ⎿  Added 1 line, removed 1 line
+      12      {
+      13          public const string GUID = "com.tristyn.buildinseatruck
+          plus";
+      14          public const string NAME = "Build In Seatruck Plus";
+      15 -        public const string VERSION = "1.0.3";                 
+      15 +        public const string VERSION = "1.0.4";                 
+      16  
+      17          public static ManualLogSource Log { get; private set; }
+      18          public static new Config Config { get; private set; }
+
+● Update(manifest.json)
+  ⎿  Added 1 line, removed 1 line
+      1  {
+      2    "name": "BuildInSeatruckPlus",
+      3 -  "version_number": "1.0.3",                                    
+      3 +  "version_number": "1.0.4",                                    
+      4    "website_url": "https://github.com/TRusselo/BuildInSeatruckPlu
+         s",
+      5    "description": "Build inside your Seatruck (lockers, fabricato
+         rs, decor) plus a mini jukebox & speakers that play your unlocke
+         d music on the move.",
+      6    "dependencies": [
+
+● Update(CHANGELOG.md)
+  ⎿  Added 13 lines
+       3  All notable changes to this project are documented here.
+       4  This project adheres to [Semantic Versioning](https://semver.or
+          g/).
+       5  
+       6 +## [1.0.4] - 2026-06-21                                        
+       7 +                                                               
+       8 +### Fixed                                                      
+       9 +- **Docking collision fix now survives save/load.** The collide
+         +r re-layering ran                                              
+      10 +  only at placement (buildables) and render setup (plants), bot
+         +h runtime-only. On                                             
+      11 +  load the game respawns buildables and plants from their prefa
+         +bs on their solid                                              
+      12 +  default layers, so docking got blocked again after reloading.
+         + The fix is now                                                
+      13 +  re-applied at the two maneuvers that precede a collision — `S
+         +eaTruckMotor.StartPiloting`                                    
+      14 +  (driving in to dock; also re-fires on load when saved while p
+         +iloting) and                                                   
+      15 +  `MoonpoolExpansionManager.StartUndocking` (the undock eject, 
+         +for a game loaded while                                        
+      16 +  docked). Both sweep buildable `Constructable` subtrees, so pl
+         +ants and fruit ride                                            
+      17 +  along and the Seatruck hull is left alone.                   
+      18 +                                                               
+      19  ## [1.0.3] - 2026-06-20
+      20  
+      21  ### Fixed
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Remote has your day-3 chat log; my /export also made one locally. Let me drop
+  my local copy so yours comes in cleanly, commit the code, then rebase.
+
+  Pushed to main, ran 2 shell commands (ctrl+o to expand)
+
+● v1.0.4 is live:
+  https://github.com/TRusselo/BuildInSeatruckPlus/releases/tag/v1.0.4
+
+  - Version bumped (Plugin.cs + manifest.json), changelog entry added.
+  - Committed, rebased onto your day-3 chat log push, tagged v1.0.4, pushed.
+  - GitHub release published with both zips.
+
+  Let me log the fix in memory.
+
+  Wrote 1 memory (ctrl+o to expand)
+
+● Done. v1.0.4 shipped with the save/load persistence fix —
+  https://github.com/TRusselo/BuildInSeatruckPlus/releases/tag/v1.0.4
+
+  Both zips attached, changelog updated, memory logged. Reminder still standing:
+  to refresh the Thunderstore page icon you'll need to upload the new
+  BuildInSeatruckPlus-1.0.4-thunderstore.zip there.
+
+✻ Churned for 1m 9s
+
+❯ will users have to delete / rebuild their buildables?                         
+
+● Short answer: no rebuild for the collision fix, but old items built before 
+  v1.0.2 still need a rebuild for the parenting fix. Here's the split, because
+  the two fixes behave differently on existing saves:
+
+  Collision (Useable layer) — self-heals, no rebuild.
+  v1.0.4 re-applies the collider fix every session at
+  StartPiloting/StartUndocking by sweeping all Constructable subtrees. So any
+  buildable or plant — no matter how old — gets its colliders corrected
+  automatically on load. This is the whole point of v1.0.4. ✅
+
+  Parenting (v1.0.2) — does NOT self-heal.
+  That fix only runs at placement (TryPlace). On load, the game restores each
+  item under whatever parent it was saved with:
+  - Built under v1.0.2 or later → saved under the correct module → restored
+  correct. ✅
+  - Built under v1.0.1 or earlier → saved under the cab → restored still hanging
+  off the cab. ❌ Those will still get dragged with the cab during the docking
+  rotation, and should be deconstructed and rebuilt once.
+
+  Practical takeaway:
+  - New users installing v1.0.4 fresh: never need to rebuild anything.
+  - Your own save: you already rebuilt at the v1.0.2 step and confirmed it, so
+  you're set.
+  - The only people who'd need to rebuild are anyone carrying buildables placed
+  under v1.0.0/v1.0.1 — and only their multi-module placements, only for the
+  displacement, not collision.
+
+  If you'd rather old pre-v1.0.2 items also fix themselves, I can add a
+  re-parenting pass (at StartPiloting, re-parent each buildable to the module
+  whose bounds actually contain it). It's more involved and a bit risky, so I'd
+  only do it if you think enough people have old saves to matter — otherwise a
+  one-line "rebuild items from before v1.0.2" note in the changelog covers it.
+  Your call.
+
+✻ Cooked for 42s
+
+※ recap: Goal: ship the Build In Seatruck Plus docking fixes. v1.0.4 is released and all bugs are confirmed fixed. Next: decide whether old pre-v1.0.2 buildables need an auto-reparenting pass, or just a changelog note telling users to rebuild them.
