@@ -1,7 +1,3 @@
-### DRAFT — remove these three lines before publishing.
-### DO NOT PUBLISH on Nexus until BluesKutya grants explicit permission to reuse
-### "Build In Seatruck" code. Nexus policy requires it regardless of the MIT license.
-
 [center][size=6][b]Build In Seatruck Plus[/b][/size]
 [size=4][i]Build inside your Seatruck — and bring the music with you.[/i][/size]
 
@@ -118,7 +114,7 @@ Songs are the ones you've unlocked from Jukebox Disks — the mod uses the game'
 
 [size=5][b]Credits[/b][/size]
 [list]
-[*][b]BluesKutya[/b] — original [url=https://www.nexusmods.com/subnauticabelowzero/mods/287]Build In Seatruck[/url] (MIT). This mod continues and updates that build-in-Seatruck functionality for the current game and adds the mini jukebox features.
+[*][b]BluesKutya[/b] — original [url=https://www.nexusmods.com/subnauticabelowzero/mods/287]Build In Seatruck[/url] (MIT), and thanks to him for kindly granting permission to port and build on his work. This mod continues and updates that build-in-Seatruck functionality for the current game and adds the mini jukebox features.
 [*][b]SubnauticaModding[/b] — [url=https://github.com/SubnauticaModding/Nautilus]Nautilus[/url] modding API.
 [*][b]Tobey[/b] — [url=https://www.nexusmods.com/subnauticabelowzero/mods/344]BepInEx Pack for Subnautica: Below Zero[/url].
 [*][b]Unknown Worlds[/b] — Subnautica: Below Zero.

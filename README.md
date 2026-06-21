@@ -158,7 +158,8 @@ To produce release zips:
 ## Credits
 
 - **BluesKutya** — original [*Build In Seatruck*](https://www.nexusmods.com/subnauticabelowzero/mods/287)
-  ([source](https://github.com/BluesKutya/SubnauticaMods), MIT). This mod continues
+  ([source](https://github.com/BluesKutya/SubnauticaMods), MIT), and thanks to him
+  for kindly granting permission to port and build on his work. This mod continues
   and updates that build-in-Seatruck functionality for the current game and adds
   the mini jukebox features.
 - **SubnauticaModding** — [Nautilus](https://github.com/SubnauticaModding/Nautilus) modding API.
