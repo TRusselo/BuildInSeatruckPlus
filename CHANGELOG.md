@@ -3,6 +3,34 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.6] - 2026-06-23
+
+### Fixed
+- **Mini Jukebox could still be silent after loading a save (different cause).**
+  `JukeboxInstance` caches its `PowerRelay` exactly once, in `Start()`, via
+  `GetComponentInParent<PowerRelay>()`. On some loads the mini-jukebox's `Start()`
+  runs *before* it's re-parented under the Seatruck that owns the relay, so the
+  cached relay stays null for the whole session. `ConsumePower()` then always
+  fails, and the game's `UpdatePower()` calls `Jukebox.Stop()` one frame after the
+  hotkey starts playback (label flips to "JukeboxNoPower") — a silent jukebox with
+  no animation, intermittent because it depends purely on load ordering. A prefix
+  on `JukeboxInstance.ConsumePower` now re-resolves the relay lazily when the cache
+  is null; in a powered Seatruck the lookup always succeeds, so playback survives
+  every load. Vanilla base jukeboxes (already holding a valid relay) are untouched.
+
+## [1.0.5] - 2026-06-21
+
+### Fixed
+- **Mini Jukebox sometimes silent after loading a save.** The cloned jukebox UI's
+  `CanvasLink` could hit a null canvas reference during a load (a timing race, which
+  is why it was intermittent) and throw inside `JukeboxInstance.OnEnable` *before* the
+  instance registered itself — so the hotkey couldn't find the mini-jukebox and it
+  played nothing with no on-screen animation until the next load. Added a null-safe
+  guard to `CanvasLink`'s canvas/rect-mask toggles so initialization always completes
+  and the jukebox registers reliably. (This also clears a `CanvasLink` NullReference
+  flood from the log.) A jukebox already silent in a running session still needs one
+  reload to recover.
+
 ## [1.0.4] - 2026-06-21
 
 ### Fixed
