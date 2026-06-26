@@ -50,6 +50,8 @@ A [b]Subnautica: Below Zero[/b] mod with two headline features:
 [*][b]Mini Jukebox[/b] — a 25%-scale buildable jukebox that fits the Seatruck. Plays your unlocked tracks through the game's own jukebox engine, with the normal in-world play / pause / next / shuffle / repeat / volume screen.
 [*][b]Mini Speaker[/b] — a 50%-scale speaker so the music is clear inside the cramped cab.
 [*]Very liberal placement collision on both, so they're easy to fit.
+[*][b]Synchronized jukeboxes[/b] — every jukebox that shares a host mirrors the one that's playing (track name, EQ, position, play/pause, and flashing lights), and any of them controls the one shared playback. Works across several jukeboxes in one Seatruck, several in a base, and a base together with a docked Seatruck — even the vanilla full-size Jukebox.
+[*][b]Music everywhere[/b] — speakers blend by distance just like in a base, and a [b]docked Seatruck shares its audio with the base[/b] it's docked to, so the music follows you through the whole structure. Docking no longer cuts the music.
 [/list]
 
 [size=4][b]⌨️ Playback hotkey[/b][/size]
@@ -109,6 +111,20 @@ Songs are the ones you've unlocked from Jukebox Disks — the mod uses the game'
 [*][b]New jukeboxes start in shuffle[/b] (on) — sets shuffle when playback starts via the hotkey.
 [*][b]Show "Now playing" notifications[/b] (on) — on-screen track name when a song starts/skips.
 [/list]
+
+[line]
+
+[size=5][b]Changelog[/b][/size]
+[list]
+[*][b]1.0.7[/b] — Synchronized jukeboxes (all jukes on a host mirror the one playing and share its controls); a docked Seatruck and base share their audio so music plays through the whole structure; docking no longer cuts the music; the hotkey now targets an audible jukebox; cab jukeboxes work while docked.
+[*][b]1.0.6[/b] — Fixed the Mini Jukebox occasionally staying silent after loading a save (a power/load-order race; also rolls in the 1.0.5 UI-init fix).
+[*][b]1.0.4[/b] — The docking collision fix now survives save/load.
+[*][b]1.0.3[/b] — Plants in Seatruck planters no longer block docking.
+[*][b]1.0.2[/b] — Items built in rear modules stay with their module when docking.
+[*][b]1.0.1[/b] — Building no longer blocks docking; build in the Seatruck dock room too.
+[*][b]1.0.0[/b] — Initial release: build in Seatruck + Mini Jukebox & Speakers + playback hotkey.
+[/list]
+[i]Full detail on [url=https://github.com/TRusselo/BuildInSeatruckPlus/blob/main/CHANGELOG.md]GitHub[/url].[/i]
 
 [line]
 
