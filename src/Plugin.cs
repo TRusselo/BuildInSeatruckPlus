@@ -12,7 +12,7 @@ namespace BuildInSeatruckPlus
     {
         public const string GUID = "com.tristyn.buildinseatruckplus";
         public const string NAME = "Build In Seatruck Plus";
-        public const string VERSION = "1.0.6";
+        public const string VERSION = "1.0.7";
 
         public static ManualLogSource Log { get; private set; }
         public static new Config Config { get; private set; }

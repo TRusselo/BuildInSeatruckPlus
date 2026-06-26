@@ -3,6 +3,30 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.7] - 2026-06-25
+
+### Added
+- **Synchronized jukeboxes.** Every jukebox sharing a speaker host now mirrors the one
+  that's playing — same track name, EQ animation, position and play/pause state, and
+  flashing lights — and its transport buttons drive that single shared playback instead
+  of hijacking it. Covers several jukeboxes in one Seatruck, several in a base, and a base
+  together with a Seatruck docked to it. (Vanilla base jukeboxes now sync to each other
+  while one is playing; they behave normally when nothing is.)
+- **Continuous audio across docking.** A jukebox is a single positional source that blends
+  its host's speakers (why a base plays through every room). That pool didn't span a dock,
+  so music was audible on only one side. A docked Seatruck and its base now share their
+  speaker pools, so playback is heard throughout the whole docked structure (multi-speaker,
+  distance-attenuated), and docking no longer interrupts the music.
+
+### Fixed
+- **Hotkey no longer routes into silence while docked.** The R hotkey now targets a live,
+  audible jukebox near you rather than always grabbing the first host match (which could be
+  the parked cab jukebox that produces no sound while docked).
+- **Cab jukebox works while docked.** The docked cab (head) was treated as a different
+  speaker host from the base and modules, so a cab jukebox neither synced nor produced
+  sound (the game mutes a jukebox when you aren't in its host). The whole docked structure
+  — base, cab and modules — is now treated as one host group.
+
 ## [1.0.6] - 2026-06-23
 
 ### Fixed

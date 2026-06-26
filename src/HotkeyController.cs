@@ -47,13 +47,42 @@ namespace BuildInSeatruckPlus
             if (playerHost == null && Player.main.GetCurrentSub() != null)
                 playerHost = Speaker.GetHost(Player.main.GetCurrentSub());
 
+            // If a juke is already playing audibly on our (possibly dock-bridged) host, keep
+            // controlling it so hold=stop / tap=next act on the running playback.
+            var current = Jukebox.instance;
+            if (current != null && current.isActiveAndEnabled && Jukebox.isStartingOrPlaying
+                && Speaker.IsSameHost(Speaker.GetHost(current), playerHost)
+                && current.GetSoundPosition(out _, out _, out _))
+                return current;
+
+            // Otherwise pick a live juke we can actually hear: enabled, on our host, whose host
+            // has speakers, nearest to the player. This skips the "dead" parked cab juke (no
+            // working speakers while docked) that otherwise swallowed the hotkey into silence.
+            Vector3 playerPos = Player.main.transform.position;
+            JukeboxInstance best = null;
+            float bestDistSqr = float.MaxValue;
+            bool bestHasSpeakers = false;
+
             foreach (var ji in JukeboxInstance.all)
             {
-                if (ji == null) continue;
-                if (Speaker.IsSameHost(Speaker.GetHost(ji), playerHost))
-                    return ji;
+                if (ji == null || !ji.isActiveAndEnabled) continue;
+                if (!Speaker.IsSameHost(Speaker.GetHost(ji), playerHost)) continue;
+
+                bool hasSpeakers = ji.GetSoundPosition(out _, out _, out _);
+                float distSqr = (ji.transform.position - playerPos).sqrMagnitude;
+
+                bool better = best == null
+                    || (hasSpeakers && !bestHasSpeakers)
+                    || (hasSpeakers == bestHasSpeakers && distSqr < bestDistSqr);
+                if (better)
+                {
+                    best = ji;
+                    bestDistSqr = distSqr;
+                    bestHasSpeakers = hasSpeakers;
+                }
             }
-            return Jukebox.instance;
+
+            return best != null ? best : current;
         }
 
         private void TogglePlayStop()
