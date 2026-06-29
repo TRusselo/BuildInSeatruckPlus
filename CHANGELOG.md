@@ -3,6 +3,26 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.8] - 2026-06-28
+
+### Added
+- **AutosortLockers compatibility — keep plants and marked storage from being unloaded.**
+  Building planters and lockers inside a Seatruck means the third-party
+  [AutosortLockers](https://www.nexusmods.com/subnauticabelowzero/mods/452) "vehicle
+  unloader" can empty them into base storage on docking, because a planter (and a Seatruck
+  storage drawer) is just a `StorageContainer` to it. When AutosortLockers is installed,
+  this mod now patches its unloader to:
+  - **Always skip Seatruck planters**, so growing/grown plants are never scooped out.
+  - **Skip any storage container whose editable label is set to a chosen color** — a new
+    *"Don't unload containers labeled this color"* option (Nautilus settings, default
+    **Red**, or **Off** to disable). Works on built wall lockers and the Seatruck storage
+    module's individual drawers. The match is on the label's actual displayed color, and
+    every other container still unloads normally.
+
+  This is fully optional and self-contained: with AutosortLockers absent, the setting does
+  nothing and no game behavior changes. Thanks to the AutosortLockers author — this only
+  adjusts how that mod's unloader treats Seatruck planters and color-marked storage.
+
 ## [1.0.7] - 2026-06-25
 
 ### Added

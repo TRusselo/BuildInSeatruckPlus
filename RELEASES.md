@@ -2,6 +2,11 @@
 
 A condensed history of every release. For full detail see [CHANGELOG.md](CHANGELOG.md).
 
+## v1.0.8 — AutosortLockers compatibility (protect planters & color-marked storage)
+- When [AutosortLockers](https://www.nexusmods.com/subnauticabelowzero/mods/452) is installed, its vehicle unloader no longer empties Seatruck **planters** (plants are safe on docking)
+- New Nautilus option *"Don't unload containers labeled this color"* (default **Red**, **Off** to disable) — mark a wall locker or Seatruck storage drawer that color and the unloader leaves it alone; everything else still unloads
+- Fully optional: no AutosortLockers = no effect, no game behavior change
+
 ## v1.0.7 — Synchronized jukeboxes + continuous audio across docking
 - All jukeboxes on a shared host mirror the active one (track / EQ / position / play-pause / lights), and their buttons drive the one shared playback
 - Docked Seatruck + base share speaker pools → music audible throughout the whole docked structure; docking no longer interrupts playback
